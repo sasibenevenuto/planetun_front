@@ -35,7 +35,13 @@ export class InspectionComponent implements OnInit {
   
   constructor(
     private wciClaimService: InspectionService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router: Router) {     
+      var token = localStorage.getItem('mpManagerToken');
+      if (token === "") {
+        this.router.navigate(['/login']);
+      }
+    }
 
   ngOnInit(): void {
     this.getAllWciClaims("");
